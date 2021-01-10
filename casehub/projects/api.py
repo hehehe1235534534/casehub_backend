@@ -1,21 +1,27 @@
 from fastapi import APIRouter
 
+from casehub.projects.models import ProjectModel
+from casehub.projects.schemas import ProjectSchema
+
 router = APIRouter()
 
 
 @router.get("/")
 async def get_projects():
-    return {"message": "Hello World"}
+    projects = await ProjectModel.all()
+    return projects
 
 
 @router.get("/{id}")
 async def get_project():
-    return {"message": "Hello World"}
+    project_model = await ProjectModel.get_or_404(id)
+    return project_model.to_dict()
 
 
 @router.post("/")
-async def create_project():
-    return {"message": "Hello World"}
+async def create_project(project: ProjectSchema):
+    data = await ProjectModel.create(name=project.name)
+    return data.to_dict()
 
 
 @router.put("/{id}")
