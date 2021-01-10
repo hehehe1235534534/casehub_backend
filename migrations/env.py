@@ -25,6 +25,9 @@ sys.path = ['', '..'] + sys.path[1:]
 
 from casehub.db import db
 from casehub.projects.models import ProjectModel
+from casehub.suites.models import SuiteModel
+from casehub.cases.models import CaseModel
+from casehub.steps.models import StepModel
 
 target_metadata = db
 

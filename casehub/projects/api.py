@@ -3,7 +3,7 @@ from fastapi import APIRouter
 from casehub.projects.models import ProjectModel
 from casehub.projects.schemas import ProjectSchema
 
-router = APIRouter()
+router = APIRouter(prefix='/projects', tags=['Projects'])
 
 
 @router.get("/")
